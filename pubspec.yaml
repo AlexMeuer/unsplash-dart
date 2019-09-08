@@ -1,0 +1,21 @@
+name: unsplash
+description: A client for the Unsplash API
+version: 0.0.1
+author: Alexander Meuer <github@alexmeuer.com>
+homepage: https://alexmeuer.com
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  built_value: ^6.7.1
+  built_collection: ^4.2.2
+  http: ^0.12.0+2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner: ^1.6.7
+  built_value_generator: ^6.7.1
