@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
-import 'package:unsplash/serializers.dart';
+import 'package:unsplash/src/serializers.dart';
 import 'unsplash_image.dart';
 
 class UnsplashClient {
