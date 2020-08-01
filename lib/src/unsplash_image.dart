@@ -1,30 +1,32 @@
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'unsplash_user.dart';
 import 'unsplash_location.dart';
 
+part 'unsplash_image.freezed.dart';
 part 'unsplash_image.g.dart';
 
-abstract class UnsplashImage
-    implements Built<UnsplashImage, UnsplashImageBuilder> {
-  String get id;
-  int get width;
-  int get height;
-  String get color;
-  String get description;
-  Map<String, String> get urls;
-  UnsplashLocation get location;
-  UnsplashUser get user;
+@freezed
+abstract class UnsplashImage with _$UnsplashImage {
+  const factory UnsplashImage({
+    @required String id,
+    @required int width,
+    @required int height,
+    @required String color,
+    @required String description,
+    @required Map<String, String> urls,
+    @required UnsplashLocation location,
+    @required UnsplashUser user,
+  }) = _UnsplashImage;
 
-  String get raw => urls['raw'];
-  String get full => urls['full'];
-  String get regular => urls['regular'];
-  String get small => urls['small'];
-  String get thumb => urls['thumb'];
-
-  UnsplashImage._();
-  factory UnsplashImage([void Function(UnsplashImageBuilder) updates]) =
-      _$UnsplashImage;
-  static Serializer<UnsplashImage> get serializer => _$unsplashImageSerializer;
+  factory UnsplashImage.fromJson(Map<String, dynamic> json) =>
+      _$UnsplashImageFromJson(json);
 }
+
+// extension UnsplashImageX on UnsplashImage {
+//   String get raw => urls['raw'];
+//   String get full => urls['full'];
+//   String get regular => urls['regular'];
+//   String get small => urls['small'];
+//   String get thumb => urls['thumb'];
+// }

@@ -1,16 +1,16 @@
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'unsplash_user.freezed.dart';
 part 'unsplash_user.g.dart';
 
-abstract class UnsplashUser
-    implements Built<UnsplashUser, UnsplashUserBuilder> {
-  String get id;
-  String get username;
-  String get name;
+@freezed
+abstract class UnsplashUser with _$UnsplashUser {
+  const factory UnsplashUser({
+    @required String id,
+    @required String username,
+    @required String name,
+  }) = _UnsplashUser;
 
-  UnsplashUser._();
-  factory UnsplashUser([void Function(UnsplashUserBuilder) updates]) =
-      _$UnsplashUser;
-  static Serializer<UnsplashUser> get serializer => _$unsplashUserSerializer;
+  factory UnsplashUser.fromJson(Map<String, dynamic> json) =>
+      _$UnsplashUserFromJson(json);
 }
