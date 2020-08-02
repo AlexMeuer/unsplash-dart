@@ -21,9 +21,9 @@ class _$UnsplashImageTearOff {
       @required int width,
       @required int height,
       @required String color,
-      @required String description,
+      String description,
       @required Map<String, String> urls,
-      @required UnsplashLocation location,
+      UnsplashLocation location,
       @required UnsplashUser user}) {
     return _UnsplashImage(
       id: id,
@@ -192,17 +192,15 @@ class _$_UnsplashImage implements _UnsplashImage {
       @required this.width,
       @required this.height,
       @required this.color,
-      @required this.description,
+      this.description,
       @required this.urls,
-      @required this.location,
+      this.location,
       @required this.user})
       : assert(id != null),
         assert(width != null),
         assert(height != null),
         assert(color != null),
-        assert(description != null),
         assert(urls != null),
-        assert(location != null),
         assert(user != null);
 
   factory _$_UnsplashImage.fromJson(Map<String, dynamic> json) =>
@@ -282,9 +280,9 @@ abstract class _UnsplashImage implements UnsplashImage {
       @required int width,
       @required int height,
       @required String color,
-      @required String description,
+      String description,
       @required Map<String, String> urls,
-      @required UnsplashLocation location,
+      UnsplashLocation location,
       @required UnsplashUser user}) = _$_UnsplashImage;
 
   factory _UnsplashImage.fromJson(Map<String, dynamic> json) =

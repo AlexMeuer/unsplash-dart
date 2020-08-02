@@ -9,13 +9,13 @@ class UnsplashClient {
   static const _apiUrl = "https://api.unsplash.com";
   final Dio _dio;
 
-  UnsplashClient({@required String secret})
-      : assert(secret != null),
-        assert(secret.isNotEmpty),
+  UnsplashClient({@required String accessKey})
+      : assert(accessKey != null),
+        assert(accessKey.isNotEmpty),
         _dio = Dio(
           BaseOptions(
             headers: {
-              "Authorization": "Client-ID $secret",
+              "Authorization": "Client-ID $accessKey",
               "Accept-Version": "v1"
             },
           ),
@@ -28,21 +28,17 @@ class UnsplashClient {
     String searchTerms, {
     UnsplashOrientation orientation,
   }) async {
-    final response = await _dio.get(
+    final response = await _dio.get<Map<String, dynamic>>(
       "$_apiUrl/search/photos",
       queryParameters: {
         'query': searchTerms,
-        'orientation': orientation ?? UnsplashOrientation.landscape(),
+        'orientation': _orientationToQueryParamString(orientation),
       },
     );
 
-    if (response.statusCode != 200) {
-      throw Exception('${response.statusCode} ${response.data}');
-    }
-
     final results = response.data["results"] as List;
 
-    return results.map((item) => UnsplashImage.fromJson(item));
+    return results.map((item) => UnsplashImage.fromJson(item)).toList();
   }
 
   /// Gets a random photo matching the given search terms.
@@ -52,11 +48,11 @@ class UnsplashClient {
     String searchTerms, {
     UnsplashOrientation orientation,
   }) async {
-    final response = await _dio.get(
+    final response = await _dio.get<Map<String, dynamic>>(
       "$_apiUrl/photos/random",
       queryParameters: {
         'query': searchTerms,
-        'orientation': orientation ?? UnsplashOrientation.landscape(),
+        'orientation': _orientationToQueryParamString(orientation),
       },
     );
 
@@ -65,5 +61,14 @@ class UnsplashClient {
     }
 
     return UnsplashImage.fromJson(response.data);
+  }
+
+  String _orientationToQueryParamString(UnsplashOrientation orientation) {
+    return orientation?.map(
+          landscape: (_) => 'landscape',
+          portrait: (_) => 'portrait',
+          squarish: (_) => 'squarish',
+        ) ??
+        'landscape';
   }
 }

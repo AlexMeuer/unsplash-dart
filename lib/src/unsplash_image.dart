@@ -13,9 +13,9 @@ abstract class UnsplashImage with _$UnsplashImage {
     @required int width,
     @required int height,
     @required String color,
-    @required String description,
+    String description,
     @required Map<String, String> urls,
-    @required UnsplashLocation location,
+    UnsplashLocation location,
     @required UnsplashUser user,
   }) = _UnsplashImage;
 
@@ -23,10 +23,10 @@ abstract class UnsplashImage with _$UnsplashImage {
       _$UnsplashImageFromJson(json);
 }
 
-// extension UnsplashImageX on UnsplashImage {
-//   String get raw => urls['raw'];
-//   String get full => urls['full'];
-//   String get regular => urls['regular'];
-//   String get small => urls['small'];
-//   String get thumb => urls['thumb'];
-// }
+extension UnsplashImageX on UnsplashImage {
+  String get raw => urls['raw'];
+  String get full => urls['full'];
+  String get regular => urls['regular'];
+  String get small => urls['small'];
+  String get thumb => urls['thumb'];
+}

@@ -6,8 +6,8 @@ part 'unsplash_location.g.dart';
 @freezed
 abstract class UnsplashLocation with _$UnsplashLocation {
   const factory UnsplashLocation({
-    @required String city,
-    @required String country,
+    String city,
+    String country,
   }) = _UnsplashLocation;
 
   factory UnsplashLocation.fromJson(Map<String, dynamic> json) =>

@@ -16,7 +16,7 @@ class _$UnsplashLocationTearOff {
   const _$UnsplashLocationTearOff();
 
 // ignore: unused_element
-  _UnsplashLocation call({@required String city, @required String country}) {
+  _UnsplashLocation call({String city, String country}) {
     return _UnsplashLocation(
       city: city,
       country: country,
@@ -95,9 +95,7 @@ class __$UnsplashLocationCopyWithImpl<$Res>
 
 @JsonSerializable()
 class _$_UnsplashLocation implements _UnsplashLocation {
-  const _$_UnsplashLocation({@required this.city, @required this.country})
-      : assert(city != null),
-        assert(country != null);
+  const _$_UnsplashLocation({this.city, this.country});
 
   factory _$_UnsplashLocation.fromJson(Map<String, dynamic> json) =>
       _$_$_UnsplashLocationFromJson(json);
@@ -139,8 +137,8 @@ class _$_UnsplashLocation implements _UnsplashLocation {
 }
 
 abstract class _UnsplashLocation implements UnsplashLocation {
-  const factory _UnsplashLocation(
-      {@required String city, @required String country}) = _$_UnsplashLocation;
+  const factory _UnsplashLocation({String city, String country}) =
+      _$_UnsplashLocation;
 
   factory _UnsplashLocation.fromJson(Map<String, dynamic> json) =
       _$_UnsplashLocation.fromJson;
